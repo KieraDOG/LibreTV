@@ -1,0 +1,21 @@
+services:
+  libretv:
+    build: .
+    image: libretv-nas:local
+    restart: unless-stopped
+    ports:
+      - '8080:8080'
+    environment:
+      PASSWORD: ${PASSWORD:?请设置 LibreTV 登录密码}
+      NAS_DOWNLOAD_ENABLED: '1'
+      DOWNLOAD_DATA_DIR: /data
+      NAS_HOST: ${NAS_HOST:?请设置群晖 IP}
+      NAS_SHARE: ${NAS_SHARE:?请设置共享名}
+      NAS_USERNAME: ${NAS_USERNAME:?请设置 NAS 账号}
+      NAS_PASSWORD: ${NAS_PASSWORD:?请设置 NAS 密码}
+      NAS_DOMAIN: ${NAS_DOMAIN:-WORKGROUP}
+    volumes:
+      - downloads:/data
+    stop_grace_period: 30s
+volumes:
+  downloads:

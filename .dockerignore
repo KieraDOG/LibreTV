@@ -20,3 +20,7 @@ docker-compose.yml
 docs
 README.md
 LICENSE
+
+# Never send download state or generated bundles as build context
+data
+dist

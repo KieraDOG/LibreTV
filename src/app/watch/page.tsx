@@ -1,4 +1,5 @@
 'use client';
+import NasDownloads from '@/components/NasDownloads';
 
 import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
@@ -288,6 +289,7 @@ function WatchContent() {
             </p>
           </div>
           <div className="ml-auto flex items-center gap-2">
+            <NasDownloads sourceUrl={currentUrl} title={`${videoTitle}${episodes.length > 1 ? ` 第${currentIndex + 1}集` : ''}`} />
             <button
               className="btn-ghost btn-sm"
               onClick={() => {
