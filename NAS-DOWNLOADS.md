@@ -35,6 +35,16 @@ docker compose -f docker-compose.nas.yml logs -f
 
 Docker 使用命名卷 downloads。正常重建容器不会删除数据；不要执行 `down -v`，否则任务及临时文件会删除。输出文件带任务 ID 后缀以避免同名覆盖。
 
+## 暂未配置 NAS 时启动网页
+
+`docker-compose.home.yml` 默认关闭 NAS Worker，允许先运行网页。先在 `.env` 设置 PASSWORD，然后：
+
+```sh
+docker compose -f docker-compose.home.yml up -d --build
+```
+
+填好 NAS_HOST、NAS_SHARE、NAS_USERNAME、NAS_PASSWORD，并设 NAS_DOWNLOAD_ENABLED=1 后，用同一命令重新创建容器即可。保持使用同一个 Compose 文件，避免创建重复实例。
+
 ## 本地开发
 
 需要 Node.js 22、FFmpeg、smbclient，并确保命令可从 PATH 执行。
